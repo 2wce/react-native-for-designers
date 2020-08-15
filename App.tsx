@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import Home from "./screens/Home";
+import { OPEN_MENU, CLOSE_MENU } from "./constants";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+interface Action {
+  type: string;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const initialState = {
+  action: "closeMenu",
+};
+
+const reducer = (state = initialState, action: Action) => {
+  switch (action.type) {
+    case CLOSE_MENU:
+      return { action: "closeMenu" };
+
+    case OPEN_MENU:
+      return { action: "openMenu" };
+
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer);
+
+const App = () => (
+  <Provider store={store}>
+    <Home />
+  </Provider>
+);
+
+export default App;
