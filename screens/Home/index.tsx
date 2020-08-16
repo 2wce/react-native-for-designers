@@ -11,29 +11,24 @@ import { NotificationIcon } from "../../components/Icons";
 import Logo from "../../components/Logo";
 import Course from "../../components/Course";
 import Menu from "../../components/Menu";
-import {
-  Container,
-  TitleBar,
-  Avatar,
-  Title,
-  Name,
-  Subtitle,
-  RootView,
-} from "./styles";
+import { Container, TitleBar, Title, Name, Subtitle, RootView } from "./styles";
 import { logos, cards, courses } from "./data";
 import { OPEN_MENU } from "../../constants";
 import { connect } from "react-redux";
+import Avatar from "../../components/Avatar";
 
 interface HomeProps {
   openMenu: any;
   action: string;
+  name: string;
 }
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
-const mapStateToProps = (state: { action: string }) => {
+const mapStateToProps = (state: { action: string; name: string }) => {
   return {
     action: state.action,
+    name: state.name,
   };
 };
 
@@ -46,7 +41,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-const Home = ({ action, openMenu }: HomeProps) => {
+const Home = ({ action, openMenu, name }: HomeProps) => {
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
   const mounted = useRef<boolean | undefined>();
@@ -101,13 +96,13 @@ const Home = ({ action, openMenu }: HomeProps) => {
             <TitleBar>
               <TouchableOpacity
                 onPress={openMenu}
-                style={{ position: "absolute", top: 0, left: 0 }}
+                style={{ position: "absolute", top: 0, left: 20 }}
               >
-                <Avatar source={require("../../assets/avatar.jpg")} />
+                <Avatar />
               </TouchableOpacity>
 
               <Title>Welcome back,</Title>
-              <Name>Kuda</Name>
+              <Name>{name}</Name>
               <NotificationIcon
                 style={{ position: "absolute", right: 20, top: 5 }}
               />

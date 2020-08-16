@@ -2,10 +2,11 @@ import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import Home from "./screens/Home";
-import { OPEN_MENU, CLOSE_MENU } from "./constants";
+import { OPEN_MENU, CLOSE_MENU, UPDATE_NAME } from "./constants";
 
 interface Action {
   type: string;
+  name?: string;
 }
 
 const initialState = {
@@ -19,6 +20,9 @@ const reducer = (state = initialState, action: Action) => {
 
     case OPEN_MENU:
       return { action: "openMenu" };
+
+    case UPDATE_NAME:
+      return { name: action.name, action: "closeMenu" };
 
     default:
       return state;
