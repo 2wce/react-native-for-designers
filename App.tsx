@@ -1,8 +1,9 @@
 import React from "react";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import Home from "./screens/Home";
+//import Home from "./screens/Home";
 import { OPEN_MENU, CLOSE_MENU, UPDATE_NAME } from "./constants";
+import AppNavigator from "./navigation";
 
 interface Action {
   type: string;
@@ -33,7 +34,7 @@ const store = createStore(reducer);
 
 const App = () => (
   <Provider store={store}>
-    <Home />
+    <AppNavigator />
   </Provider>
 );
 

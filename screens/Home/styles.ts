@@ -3,7 +3,8 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   background: #f0f3f5;
   flex: 1;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `;
 
 export const TitleBar = styled.View`

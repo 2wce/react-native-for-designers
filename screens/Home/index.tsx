@@ -21,6 +21,7 @@ interface HomeProps {
   openMenu: any;
   action: string;
   name: string;
+  navigation: any;
 }
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
@@ -41,7 +42,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-const Home = ({ action, openMenu, name }: HomeProps) => {
+const Home = ({ action, openMenu, name, navigation }: HomeProps) => {
   const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
   const mounted = useRef<boolean | undefined>();
@@ -130,14 +131,18 @@ const Home = ({ action, openMenu, name }: HomeProps) => {
             >
               {cards.map(({ title, image, caption, logo, subtitle }, index) => {
                 return (
-                  <Card
+                  <TouchableOpacity
                     key={index}
-                    title={title}
-                    image={image}
-                    caption={caption}
-                    logo={logo}
-                    subtitle={subtitle}
-                  />
+                    onPress={() => navigation.push("Section")}
+                  >
+                    <Card
+                      title={title}
+                      image={image}
+                      caption={caption}
+                      logo={logo}
+                      subtitle={subtitle}
+                    />
+                  </TouchableOpacity>
                 );
               })}
             </ScrollView>
