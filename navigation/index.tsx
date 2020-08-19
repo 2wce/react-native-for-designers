@@ -10,7 +10,11 @@ function App() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={TabNavigator} />
-      <Stack.Screen name="Section" component={SectionScreen} />
+      <Stack.Screen
+        name="Section"
+        component={SectionScreen}
+        options={{ header: () => null }}
+      />
     </Stack.Navigator>
   );
 }
