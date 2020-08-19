@@ -17,7 +17,7 @@ jobs:
           expo-version: 3.x
           expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
-          expo-packager: npm
-      - run: npm ci
+          expo-packager: yarn
+      - run: yarn install --frozen-lockfile
       - run: expo doctor
       - run: expo publish
